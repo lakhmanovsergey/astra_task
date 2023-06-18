@@ -28,6 +28,7 @@ vagrant_ansible: vagrant_start
 #
 git_add:
 	git add \
+		.gitignore \
 		Vagrantfile \
 		Makefile \
 		playbooks/monitoring.yml \
