@@ -1,0 +1,13 @@
+---
+- name: Deploying the build environment
+  hosts: ubuntu
+  become: yes
+  tasks:
+    - name: Ping
+      ping:
+    - name: Install needed packages
+      apt:
+        pkg:
+          - docker
+          - docker-compose
+          - prometheus-node-exporter

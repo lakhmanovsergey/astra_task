@@ -9,9 +9,12 @@ Vagrant.configure("2") do |config|
     domain.uri = 'qemu:///system'
     domain.memory = 1024
     domain.cpus = 1
+  end
+  config.vm.define "ubuntu" do |ubuntu|
     config.vm.box = "ubuntu2004"
     config.vm.provision "ansible" do |ansible|
       ansible.playbook = "playbooks/monitoring.yml"
       ansible.verbose = true
     end
+  end
 end
