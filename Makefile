@@ -31,4 +31,4 @@ git_add:
 		Makefile \
 		playbooks/monitoring.yml
 git_commit: git_add
-	git commit --message "anover change"
+	git commit --message "change `date`"

@@ -11,8 +11,10 @@ Vagrant.configure("2") do |config|
     domain.cpus = 1
   end
   config.vm.define "ubuntu" do |ubuntu|
-    config.vm.box = "ubuntu2004"
-    config.vm.provision "ansible" do |ansible|
+    ubuntu.vm.box = "ubuntu2004"
+    ubuntu.vm.synced_folder "docker/", "docker"
+    ubuntu.vm.network "forwarded_port", guest: 3000, host: 3000, protocol: "tcp"
+    ubuntu.vm.provision "ansible" do |ansible|
       ansible.playbook = "playbooks/monitoring.yml"
       ansible.verbose = true
     end
