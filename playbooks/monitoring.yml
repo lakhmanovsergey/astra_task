@@ -11,3 +11,6 @@
           - docker
           - docker-compose
           - prometheus-node-exporter
+    - name: Start docker-compose
+      community.docker.docker_compose:
+        project_src: docker

@@ -34,4 +34,4 @@ git_add:
 		playbooks/monitoring.yml \
 		docker/
 git_commit: git_add
-	git commit --message "change `date`"
+	git commit --message "change"
