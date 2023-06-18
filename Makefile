@@ -25,6 +25,8 @@ vagrant_start:
 	vagrant up
 vagrant_ansible: vagrant_start
 	vagrant provision
+vagrant_destroy:
+	vagrant destroy
 #
 git_add:
 	git add \
