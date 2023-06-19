@@ -39,3 +39,4 @@ git_add:
 		docker/
 git_commit: git_add
 	git commit --message "change `date`"
+	git push -u origin main
