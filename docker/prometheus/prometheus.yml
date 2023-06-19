@@ -7,11 +7,10 @@ scrape_configs:
 
   - job_name: 'node-exporter'
     static_configs:
-      - targets:
-        - host-gateway
+      - targets: host.docker.internal
+        - 
     relabel_configs:
       - source_labels: [__address__]
         target_label: instance
         regex: '([^:]+)(:[0-9]+)?'
         replacement: '$1'
-

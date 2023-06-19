@@ -3,6 +3,8 @@ VMHOST="ubuntu"
 VMBOX="ubuntu2020"
 BOX_URL="https://app.vagrantup.com/generic/boxes/ubuntu2104/versions/4.2.16/providers/libvirt.box"
 #
+default: vg-ubuntu2004-box vagrant-ansible 
+#
 init_dir: files playbooks docker
 files:
 	mkdir files
@@ -13,7 +15,7 @@ docker:
 #
 vagrant-libvirt:
 	sudo gem install vagrant-libvirt
-vg-ubuntu2004-box: files/ubuntu2004.box
+vg-ubuntu2004-box: files/ubuntu2004.box vagrant-libvirt
 	vagrant box add --name=$(VMBOX) provider=libvirt files/$(VMBOX).box
 files/ubuntu2004.box:
 	wget -O files/$(VMBOX).box $(BOX_URL)
@@ -36,4 +38,4 @@ git_add:
 		playbooks/monitoring.yml \
 		docker/
 git_commit: git_add
-	git commit --message "change"
+	git commit --message "change `date`"
