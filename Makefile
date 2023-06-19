@@ -1,9 +1,9 @@
 SHELL=/bin/bash
 VMHOST="ubuntu"
-VMBOX="ubuntu2020"
-BOX_URL="https://app.vagrantup.com/generic/boxes/ubuntu2104/versions/4.2.16/providers/libvirt.box"
+VMBOX="ubuntu2004"
+BOX_URL="https://app.vagrantup.com/generic/boxes/ubuntu2004/versions/4.2.16/providers/libvirt.box"
 #
-default: init_dir vg-ubuntu2004-box vagrant_ansible git_pull
+default: init_dir vg-ubuntu-box vagrant_ansible git_pull
 #
 init_dir: files playbooks docker
 files:
@@ -15,10 +15,10 @@ docker:
 #
 vagrant-libvirt:
 	sudo gem install vagrant-libvirt
-vg-ubuntu2004-box: files/ubuntu2004.box vagrant-libvirt
+vg-ubuntu-box: files/$(VMBOX).box vagrant-libvirt
 	vagrant box list | grep -q $(VMBOX) && vagrant box remove $(VMBOX)
 	vagrant box add --name=$(VMBOX) provider=libvirt files/$(VMBOX).box
-files/ubuntu2004.box:
+files/$(VMBOX).box:
 	wget -O files/$(VMBOX).box $(BOX_URL)
 clean_downloads:
 	rm files/$(VMBOX).box
