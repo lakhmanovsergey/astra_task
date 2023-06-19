@@ -3,7 +3,7 @@ VMHOST="ubuntu"
 VMBOX="ubuntu2020"
 BOX_URL="https://app.vagrantup.com/generic/boxes/ubuntu2104/versions/4.2.16/providers/libvirt.box"
 #
-default: init_dir vg-ubuntu2004-box vagrant_ansible 
+default: init_dir vg-ubuntu2004-box vagrant_ansible git_pull
 #
 init_dir: files playbooks docker
 files:
