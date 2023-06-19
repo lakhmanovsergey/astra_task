@@ -16,6 +16,7 @@ docker:
 vagrant-libvirt:
 	sudo gem install vagrant-libvirt
 vg-ubuntu2004-box: files/ubuntu2004.box vagrant-libvirt
+	vagrant box list | grep -q $(VMBOX) && vagrant box remove $(VMBOX)
 	vagrant box add --name=$(VMBOX) provider=libvirt files/$(VMBOX).box
 files/ubuntu2004.box:
 	wget -O files/$(VMBOX).box $(BOX_URL)
