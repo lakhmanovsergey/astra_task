@@ -24,6 +24,7 @@ clean_downloads:
 	vagrant box remove $(VMBOX)
 #
 vagrant_start:
+	vagrant status | grep -q $(VMHOST) || \
 	vagrant up
 vagrant_ansible: vagrant_start
 	vagrant provision
