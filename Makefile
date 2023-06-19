@@ -1,9 +1,9 @@
 SHELL=/bin/bash
-VMHOST="ubuntu"
-VMBOX="ubuntu2004"
-BOX_URL="https://app.vagrantup.com/generic/boxes/ubuntu2004/versions/4.2.16/providers/libvirt.box"
+VMHOST=ubuntu
+VMBOX=ubuntu2004
+BOX_URL=https://app.vagrantup.com/generic/boxes/ubuntu2004/versions/4.2.16/providers/libvirt.box
 #
-default: init_dir vg-ubuntu-box vagrant_ansible git_pull
+default: init_dir git_pull vg-ubuntu-box vagrant_ansible
 #
 init_dir: files playbooks docker
 files:
@@ -16,7 +16,6 @@ docker:
 vagrant-libvirt:
 	sudo gem install vagrant-libvirt
 vg-ubuntu-box: files/$(VMBOX).box vagrant-libvirt
-	vagrant box list | grep -q $(VMBOX) && vagrant box remove $(VMBOX)
 	vagrant box add --force --name=$(VMBOX) provider=libvirt files/$(VMBOX).box
 files/$(VMBOX).box:
 	wget -O files/$(VMBOX).box $(BOX_URL)
