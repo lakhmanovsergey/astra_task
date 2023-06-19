@@ -17,7 +17,7 @@ vagrant-libvirt:
 	sudo gem install vagrant-libvirt
 vg-ubuntu-box: files/$(VMBOX).box vagrant-libvirt
 	vagrant box list | grep -q $(VMBOX) && vagrant box remove $(VMBOX)
-	vagrant box add --name=$(VMBOX) provider=libvirt files/$(VMBOX).box
+	vagrant box add --force --name=$(VMBOX) provider=libvirt files/$(VMBOX).box
 files/$(VMBOX).box:
 	wget -O files/$(VMBOX).box $(BOX_URL)
 clean_downloads:
